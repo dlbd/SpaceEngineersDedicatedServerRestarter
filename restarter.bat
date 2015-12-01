@@ -18,7 +18,7 @@ rem Delay after server is started in seconds.
 set DELAY_AFTER_START=60
 
 rem Server executable (just the .exe file).
-set SERVER_EXE="SpaceEngineersDedicate.exe
+set SERVER_EXE=SpaceEngineersDedicated.exe
 
 rem Save file directory.
 set SAVE_DIR="%APPDATA%\SpaceEngineersDedicated\Saves\Created 2015-12-01 1258"
