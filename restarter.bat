@@ -69,5 +69,5 @@ start "" /d %SERVER_START_IN% %SERVER_COMMAND% || exit /b 1
 set JUST_STARTED=1
 echo Waiting for the server to load...
 timeout /t %DELAY_AFTER_START% /nobreak > nul
-echo The server is probably be running by now.
+echo The server is probably running by now.
 exit /b 0
