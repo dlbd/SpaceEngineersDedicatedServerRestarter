@@ -36,7 +36,8 @@ for %%a in (%SAVE_DIR%) do set CUR_MTIME=%%~ta
 if not defined CUR_MTIME echo Failed to get save directory modification time. Does it exist? & goto :error
 
 :check_if_is_running
-tasklist | find /i %SERVER_EXE% > nul
+@echo on
+tasklist | find /i %SERVER_EXE%
 if %ERRORLEVEL% == 0 goto :is_running
 
 :is_not_running
@@ -44,6 +45,7 @@ echo %DATE% %TIME% -- The server is not running!
 call :start_server || goto :error
 
 :is_running
+@echo off
 echo %DATE% %TIME% -- Cur mtime: %CUR_MTIME%, prev: %PREV_MTIME%
 if defined JUST_STARTED goto :skip_mtime_comparison
 
