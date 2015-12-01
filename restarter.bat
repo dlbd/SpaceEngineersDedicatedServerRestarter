@@ -1,5 +1,7 @@
 @echo off
 
+rem Important: never edit this file while the script is running.
+
 rem -----------------------------------
 rem SETTINGS START HERE
 rem -----------------------------------
@@ -36,8 +38,7 @@ for %%a in (%SAVE_DIR%) do set CUR_MTIME=%%~ta
 if not defined CUR_MTIME echo Failed to get save directory modification time. Does it exist? & goto :error
 
 :check_if_is_running
-@echo on
-tasklist | find /i %SERVER_EXE%
+tasklist /fo csv | findstr /i %SERVER_EXE% > nul
 if %ERRORLEVEL% == 0 goto :is_running
 
 :is_not_running
@@ -45,7 +46,6 @@ echo %DATE% %TIME% -- The server is not running!
 call :start_server || goto :error
 
 :is_running
-@echo off
 echo %DATE% %TIME% -- Cur mtime: %CUR_MTIME%, prev: %PREV_MTIME%
 if defined JUST_STARTED goto :skip_mtime_comparison
 
